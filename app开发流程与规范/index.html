@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>APP前端开发流程与规范</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Anonymous+Pro:400,700,400italic,700italic">
+    <link rel="stylesheet" href="css/default.css" media="screen">
+    <style type="text/css" media="screen">
+        img[alt="directory"]{
+            width: 100%;
+            height: 515px;
+        }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse
+#  APP前端开发   
+##  流程与规范
+                           
+
+## 
+
+```
+min.xiao@dianping.com  
+
+2015.09.14
+```
+---
+class: inverse
+## 项目在哪？
+### 
+
+>  App项目统一存放于[app-trade-f2e](http://code.dianpingoa.com/groups/app-trade-f2e)组中；    
+
+>  更早之前的一些项目建在了[apollo-static](http://code.dianpingoa.com/groups/apollo-static)组中。
+
+---
+class: inverse
+## 如何开始？
+### 
+- 项目不存在如何搭建
+
+```
+>  通知前端童鞋帮忙搭建；   
+
+>  去(code.dianpingoa.com)搜索 apollo-template-static project;      
+
+   clone到本地copy里面的文件到自己的项目中；		   
+
+   修改package.json和cortex.json中的name
+
+```
+
+---
+class: inverse
+## 如何开始？
+### 
+
+- 项目已存在
+
+```
+>  找到对应页面进行修改即可
+```
+
+---
+class: inverse
+## 如何开始？
+### 
+
+-  创建规范
+
+```
+>  按照各业务小组划分项目；   
+
+>  项目命名规则  apollo-moduleName-static；
+```
+
+---
+class: inverse
+## 如何开始？
+### 
+
+-  依赖环境   
+
+```
+>  nodejs
+
+>  cortex
+
+>  anywhere、apache、tomcat
+```
+([nodejs下载](http://www.nodejs.org/))
+
+---
+class: inverse
+## 如何开始？
+### 
+
+- 运行项目
+
+```
+>  进入项目所在目录后安装项目依赖包   
+
+>  安装Npm淘宝镜像,（注1）   
+
+>  执行npm install 或 cnpm install 安装node相关依赖，(注2)    
+
+>  执行cortex install 安装cortex相关依赖，(注2)     
+
+>  执行cortex build 编译项目文件    
+
+>  执行anywhere  启动node服务器    
+
+``` 
+注1：npm install -g cnpm –registry=https://registry.npm.taobao.org     
+
+注2：sh install.sh
+
+---
+class: inverse   
+##  如何开始？   
+###   
+
+- 浏览器调试
+
+```  
+>  浏览器输入页面地址查看，例:     
+
+   192.168.0.10/
+   neurons/apollo-template-static/0.1.0/
+   html/test/index.html
+```
+
+---
+class: inverse   
+##  如何开始？   
+###   
+
+- 模拟器调试    
+
+```
+>  下载native项目：   
+
+   ios：http://code.dianpingoa.com/crm/crm-apollo-iphone;   
+
+   android：http://code.dianpingoa.com/crm/crm-apollo-android;    
+
+>  执行项目中类似 install.sh文件   
+
+>  通过编辑器编译代码唤出模拟器   
+
+>  在调试工具中找到“打开url”选项输入url打开调试页面，格式：   
+
+   dpapp: dpcrm://web?url=encode(你的url)   
+
+   efte：dpcrm://efte?unit=项目名&path=页面地址&query={参数}；
+
+```
+
+---
+class: inverse   
+##  如何开始？   
+###   
+
+- 测试账号    
+
+```
+>  [alpha、beta]账号：1255 ；密码：123456   
+
+>  [ppe]账号：1255 ；密码：112233   
+
+>  [pro]账号：6065 ；密码：654321as
+
+```
+
+---
+class: inverse   
+##  开发模式   
+###   
+
+-  传统的mvc开发模式    
+   
+   
+![mvc](img/mvc.png)
+
+---
+class: inverse   
+##  开发模式   
+###   
+
+-  Facebook提出的flux开发模式    
+   
+   
+![mvc](img/flux.png)
+
+---
+class: inverse   
+##  开发模式   
+###   
+
+-  Facebook提出的flux开发模式    
+   
+   
+```
+>  Action：表达 view 要改变 store 内容的载体   
+
+>  Dispatcher：中心枢纽，管理flux应用中心的所有数据流， 
+
+              （是store的回调注册）   
+
+>  Store：包含应用程序的状态和逻辑，类似mvc中的Model   
+
+>  view：视图
+```
+
+---
+class: inverse   
+## 框架    
+###   
+
+- 项目中用到的框架与类库   
+
+```
+>  redux  ——flux   
+
+>  react  ——view   
+
+>  dpapp-apollo  ——jsbridge  
+
+>  zepto(非必须)
+
+```
+
+---
+class: inverse   
+## 框架    
+###   
+
+-  redux     
+
+```
+>  是 JavaScript 状态容器，提供可预测化的状态管理   
+
+
+```
+
+---
+class: inverse   
+## 框架    
+###   
+
+-  redux提供了极简单的Api     
+
+```
+>  createStore   
+
+>  Store   
+
+>  combineReducers   
+
+>  applyMiddleware  
+
+>  bindActionCreators   
+
+>  compose  
+
+
+```
+
+---
+class: code,inverse   
+## 框架    
+###   
+
+-  redux工作流程     
+
+![process](img/process.jpeg)
+
+---
+class: code,inverse   
+## 框架    
+###   
+
+-  react     
+
+``` 
+>  仅仅是 VIEW 层   
+
+>  Virtual DOM  
+
+>  Components
+```   
+---
+class: code,inverse   
+## 框架    
+###   
+-  dpapp-apollo     
+
+``` 
+>  通过简单的api跟native互动  
+
+```
+
+---
+class: code,inverse   
+## 框架    
+###   
+-  react+redux    
+
+``` 
+>  依赖react-redux模块（npm install --save react-redux）   
+
+>  和redux连接   
+    
+    var store = createStore(appStore);
+
+    <Provider store={store}>
+      {() => <App />}
+    </Provider>
+
+    /*包装组件注入调度和状态*/
+    @connect(
+        state =>({
+            test:state.test
+        }),
+        TestAction
+    )
+```
+
+---
+class: code,inverse   
+## 框架    
+###   
+-  react + redux + dpapp-apollo   
+
+``` 
+>  引入dpapp-apollo调用方法实现和native交互  
+
+   import * as dpapp  from 'dpapp-apollo';
+   dpapp.openScheme({
+      url:"dpcrm://web",
+      extra:{
+        "url":"http://51.dianping.com/apollo/notify/notify.html"
+      }
+   });
+```
+
+
+
+---
+class: code,inverse   
+## 框架    
+###   
+-  文档     
+
+``` 
+#  redux：http://camsong.github.io/redux-in-chinese/index.html;   
+
+#  react：http://reactjs.cn/react/docs/getting-started.html;   
+
+#  es6：http://es6.ruanyifeng.com/;   
+
+#  dpapp：http://efte.github.io/dpapp/#概述;    
+
+
+```
+
+---
+class: code,inverse   
+## 发布    
+###   
+-  配置项     
+
+``` 
+>  static-site.json   
+
+   {
+      "ftpkey": "cortex-ci.static-site-ftp.h5.apollo",
+      "html_dir": "html",
+      "clearCDN": []
+   } 
+
+>  通过ci发布到alpha和beta   
+
+>  rollout发布到ppe和pro
+```
+
+---
+class: inverse   
+##  目录规范   
+###   
+   
+![directory](img/directory.png)
+
+---
+class: center, middle, inverse
+## 谢谢大家！
+    </textarea>
+    <script src="js/remark.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var slideshow = remark.create({
+        highlightStyle: 'monokai',
+        highlightLanguage: 'remark'
+      });
+    </script>
+  </body>
+</html>
